@@ -15,9 +15,9 @@ auth = tw.OAuthHandler(api_key, api_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tw.API(auth,wait_on_rate_limit=True)
 
-# Text query example, looking for tweets from any user
+
 text_query = "covid OR covid19 OR covid-19" + " -filter:retweets"
-# Upper date range, pulls up UNTIL this date before
+# UNTIL this date before
 todayStr = datetime.now().strftime('%Y-%m-%d')
 today =  datetime.now()
 yesterday = today - timedelta(days=1)
@@ -37,7 +37,7 @@ users_locs = [[tweet.id,
                 tweet.user.location,
                 tweet.full_text]
     for tweet in tweets]
-# move into df for export
+
 tweet_df = pd.DataFrame(data=users_locs,
                     columns=["Tweet_id",
                             "screen_name",
@@ -49,11 +49,10 @@ rmv_NZ = tweet_df[~tweet_df.location.str.contains("New Zealand", case=False)]
 # Get yesterday's date
 yest_tweets = rmv_NZ[rmv_NZ["dateStr"] == yesterdayStr]
 
-#Bring in daily output csv, to append it
+
 prev_tweets = pd.read_csv("/home/pi/tweetScrape/data/routineCovidOutput.csv",encoding_errors='ignore')
-#append new tweets to daily csv output
+
 all_tweets = pd.concat([prev_tweets,yest_tweets])
-# Output all tweets as overwritten csv
 all_tweets.to_csv("/home/pi/tweetScrape/data/routineCovidOutput.csv", mode='w',index=False,header=True)
 # output JSON file as well
 all_tweets.to_json(r"/home/pi/tweetScrape/data/dailyCovidTweets.json", orient='records')
