@@ -44,10 +44,8 @@ tweet_df = pd.DataFrame(data=users_locs,
                             "datetime",
                             "location",
                             "text"])
-# convert dates to strings, and remove weird NZ rows
 tweet_df['dateStr'] = tweet_df['datetime'].dt.strftime('%Y-%m-%d')
 rmv_NZ = tweet_df[~tweet_df.location.str.contains("New Zealand", case=False)]
-
 # Get yesterday's date
 yest_tweets = rmv_NZ[rmv_NZ["dateStr"] == yesterdayStr]
 
@@ -55,12 +53,7 @@ yest_tweets = rmv_NZ[rmv_NZ["dateStr"] == yesterdayStr]
 prev_tweets = pd.read_csv("/home/pi/tweetScrape/data/routineCovidOutput.csv",encoding_errors='ignore')
 #append new tweets to daily csv output
 all_tweets = pd.concat([prev_tweets,yest_tweets])
-
 # Output all tweets as overwritten csv
 all_tweets.to_csv("/home/pi/tweetScrape/data/routineCovidOutput.csv", mode='w',index=False,header=True)
 # output JSON file as well
 all_tweets.to_json(r"/home/pi/tweetScrape/data/dailyCovidTweets.json", orient='records')
-
-
-
-

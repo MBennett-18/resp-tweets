@@ -49,11 +49,8 @@ tweet_df = pd.DataFrame(data=users_locs,
                             "location",
                             "text"])
 
-# fuck it use strings
 tweet_df['dateStr'] = tweet_df['datetime'].dt.strftime('%Y-%m-%d')
-
 rmv_NZ = tweet_df[~tweet_df.location.str.contains("New Zealand", case=False)]
-
 # Get yesterday's date
 yest_tweets = rmv_NZ[rmv_NZ["dateStr"] == yesterdayStr]
 
@@ -61,7 +58,6 @@ yest_tweets = rmv_NZ[rmv_NZ["dateStr"] == yesterdayStr]
 prev_tweets = pd.read_csv("/home/pi/tweetScrape/data/routineOutput.csv", encoding_errors = 'ignore')
 #append new tweets to daily csv output
 all_tweets = pd.concat([prev_tweets,yest_tweets])
-
 # Output all tweets as overwritten csv
 all_tweets.to_csv("/home/pi/tweetScrape/data/routineOutput.csv", mode='w',header=True, index=False)
 # output JSON file as well
