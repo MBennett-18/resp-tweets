@@ -8,9 +8,7 @@ filesToPush = [
 	'/home/pi/tweetScrape/data/dailyTweets.json',
 	'/home/pi/tweetScrape/data/dailyCovidTweets.json',
 	'/home/pi/tweetScrape/data/covidCorpus.json',
-	'/home/pi/tweetScrape/data/covidSentiment.json',
 	'/home/pi/tweetScrape/data/fluCorpus.json',
-	'/home/pi/tweetScrape/data/fluSentiment.json',
 	'/home/pi/tweetScrape/data/covidSentWeek.json',
 	'/home/pi/tweetScrape/data/fluSentWeek.json']
 
@@ -19,9 +17,7 @@ fileNames = [
 	'dailyTweets.json',
 	'dailyCovidTweets.json',
 	'covidCorpus.json',
-	'covidSentiment.json',
 	'fluCorpus.json',
-	'fluSentiment.json',
 	'covidSentWeek.json',
 	'fluSentWeek.json']
 
