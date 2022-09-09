@@ -61,9 +61,7 @@ covidTweets <- tweetSentiment(a.covid, covid = TRUE)
 
 #### Cleaning tweets for analysis ####
 write(unlist(fluTweets[1]),paste(dataPath, 'fluCorpus.json', sep=""))
-write(unlist(fluTweets[2]),paste(dataPath, 'fluSentiment.json', sep=""))
 write(unlist(fluTweets[3]),paste(dataPath, 'fluSentWeek.json', sep=""))
 
 write(unlist(covidTweets[1]),paste(dataPath, 'covidCorpus.json', sep=""))
-write(unlist(covidTweets[2]),paste(dataPath, 'covidSentiment.json', sep=""))
 write(unlist(covidTweets[3]),paste(dataPath, 'covidSentWeek.json', sep=""))
